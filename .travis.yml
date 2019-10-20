@@ -1,21 +1,21 @@
-dist:     trusty    # используем Ubuntu 14.04 Trusty Tahr (а не 12.02 Precise Pangolin)
-sudo:     required  # используем Virtual Machine (а не Docker container)
+dist:     trusty    # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Ubuntu 14.04 Trusty Tahr (пїЅ пїЅпїЅ 12.02 Precise Pangolin)
+sudo:     required  # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Virtual Machine (пїЅ пїЅпїЅ Docker container)
 
-language: cpp       # на практике разницы между специфичным для C++ окружением
-                    # и, скажем, python -- никакой. Но пусть будет cpp.
+language: cpp       # пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ C++ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+                    # пїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ, python -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ cpp.
 
 os:
-    # будем прогонять CI и на Linux, и на Mac OS X...
+    # пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CI пїЅ пїЅпїЅ Linux, пїЅ пїЅпїЅ Mac OS X...
     - linux
     - osx
 
 compiler:
-    # ... и с помощью GCC, и Clang
+    # ... пїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ GCC, пїЅ Clang
     - gcc
     - clang
 
 env:
-    # список переменных окружения, влияющих на матрицу сборки:
+    # пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
     - TARGET_CPU=amd64 BUILD_CONFIGURATION=Debug
     - TARGET_CPU=amd64 BUILD_CONFIGURATION=Release
     - TARGET_CPU=x86 BUILD_CONFIGURATION=Debug
@@ -23,7 +23,7 @@ env:
 
 matrix:
     exclude:
-        # вручную исключим ненужные элементы из матрицы сборки:
+        # пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ:
         - os:       osx
           compiler: gcc
 
@@ -38,11 +38,11 @@ before_install:
   - test -n $CXX && unset CXX
 
 install: skip
-    # скрипт настройки среды и установки зависимостей:
+    # пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
 #    - source ci/travis/install-$TRAVIS_OS_NAME.sh
 
 script:
-    # скрипт сборки и тестирования проекта:
+    # пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
     - mkdir build
     - cd build
     - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_CONFIGURATION -DTARGET_CPU=$TARGET_CPU
@@ -50,7 +50,7 @@ script:
     - ctest --output-on-failure
 
 deploy:
-    # выкладываем tagged-коммиты на GitHub Releases:
+    # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ tagged-пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ GitHub Releases:
     provider:     releases
     file:         <package-file>
     skip_cleanup: true
