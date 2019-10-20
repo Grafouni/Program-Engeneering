@@ -37,9 +37,9 @@ before_install:
   - test -n $CC  && unset CC
   - test -n $CXX && unset CXX
 
-install:
+#install:
     # скрипт настройки среды и установки зависимостей:
-    - source ci/travis/install-$TRAVIS_OS_NAME.sh
+#    - source ci/travis/install-$TRAVIS_OS_NAME.sh
 
 script:
     # скрипт сборки и тестирования проекта:
